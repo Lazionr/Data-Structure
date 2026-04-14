@@ -126,4 +126,32 @@ void ContactModify(Contact* con)
 
 }
 
+//查找通讯录数据
+void ContactFind(Contact* con)
+{
+	//以名字为标准进行查找
+	char name[NAME_MAX];
+	printf("请输入要查找的联系人姓名:\n");
+	scanf("%s", con->arr->name);
 
+	int find = FindByName(con,name);
+	if (find < 0)
+	{
+		printf("要查找的联系人数据不存在!\n");
+		return;
+	}
+	printf("找到了!\n");
+	printf("%3s %3s %3d %3s %3s\n"
+		, con->arr[find].name
+		, con->arr[find].gender
+		, con->arr[find].age
+		, con->arr[find].addr
+		, con->arr[find].tel);
+
+}
+
+//销毁通讯录
+void ContactDestroy(Contact* con)
+{
+	SLDestroy(con);
+}
